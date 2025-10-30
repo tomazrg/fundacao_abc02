@@ -15,7 +15,7 @@ library(cowplot)
 library(rio)
 ```
 
-```{r}
+```{r, echo = FALSE}
 ma = gsheet2tbl("https://docs.google.com/spreadsheets/d/1WVUeXTH_o9kTgryR1ZszdNFJjWt_PegmhxclXVSXVgk/edit?usp=sharing")
 head(ma)
 
