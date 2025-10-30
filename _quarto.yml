@@ -1,0 +1,29 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Relatório 1 - 30/10/2025"
+  navbar:
+    left:
+      - href: about.qmd
+        text: "<i class='bi bi-book-half'></i> Quem somos"
+      - href: pessoal.qmd
+        text: "<i class='bi bi-bar-chart-fill'></i> Responsáveis"
+      - href: index.qmd
+        text: "<i class='bi bi-cloud-haze2-fill'></i> Meta-análise"
+    right:
+      - href: https://fundacaoabc.org/quem-somos/
+        text: "<i class='bi bi-bank'></i> Nosso site"
+
+format:
+  html:
+    theme: flatly
+    css: styles.css
+    df-print: paged
+    toc: true
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    lib_dir: site_libs
+    self_contained: true

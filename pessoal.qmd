@@ -1,0 +1,18 @@
+# Responsáveis
+
+<div class="row" style="margin-top:5px;">
+<div class="col-sm-4" style="text-align:left;">
+  <img src="fig/Giovani.jpg" class="img-responsive" style="display:inline-block; max-height:500px;">
+  <p style="text-align:justify; margin-top:6px;">**Edson Giovanni Kochinski:** Fitopatologia /
+Graduação em Engenharia Agronômica, Centro de Ensino Superior dos Campos Gerais Faculdades Integradas</p>
+</div>
+<div class="col-sm-4" style="text-align:left;">
+  <img src="fig/Giovana.jpg" class="img-responsive" style="display:inline-block; max-height:500px;">
+  <p style="text-align:justify; margin-top:6px;">**Giovana Paola Teixeira Bochnia:** Fitopatologia /
+Graduação em Engenharia Agronômica, Universidade Estadual de Ponta Grossa</p>
+</div>
+<div class="col-sm-4" style="text-align:left;">
+  <img src="fig/Ronaldo.jpg" class="img-responsive" style="display:inline-block; max-height:500px;">
+  <p style="text-align:justify; margin-top:6px;">**Ronaldo Sperandio Ortiz:** Fitopatologia / Engenheiro Agrônomo formado pela Universidade Estadual de Ponta Grossa (UEPG), com pós-graduação Lato Sensu em Fitossanidade pela Universidade Federal do Paraná (UFPR). </p>
+</div>
+</div>

@@ -1,0 +1,10 @@
+# Quem somos
+
+<div style="text-align: center;">
+  <img src="fig/logo.png" style="width: 300px; height: 300px;">
+</div>
+ 
+
+<div style="text-align: justify;">
+A Fundação ABC é uma instituição de caráter particular, sem fins lucrativos, que realiza pesquisa aplicada para desenvolver e adaptar novas tecnologias, com o objetivo de promover soluções tecnológicas para o agronegócio aos mais de 5 mil produtores rurais filiados das Cooperativas Frísia, Castrolanda e Capal, além dos agricultores contribuintes, como os da Coopagricola (Ponta Grossa-PR), da Cooperativa Witmarsum (Palmeira-PR) e da KGL Agronegócio (Formosa-GO).
+</div>

@@ -1,0 +1,114 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Pacotes",
+    "section": "",
+    "text": "library(tidyverse)\n\nWarning: pacote 'ggplot2' foi compilado no R versão 4.4.3\n\n\nWarning: pacote 'tibble' foi compilado no R versão 4.4.3\n\n\nWarning: pacote 'purrr' foi compilado no R versão 4.4.3\n\n\nWarning: pacote 'lubridate' foi compilado no R versão 4.4.3\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.2     ✔ tibble    3.3.0\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.4     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(gsheet)\nlibrary(broom)\n\nWarning: pacote 'broom' foi compilado no R versão 4.4.3\n\nlibrary(metafor)\n\nCarregando pacotes exigidos: Matrix\n\nAnexando pacote: 'Matrix'\n\nOs seguintes objetos são mascarados por 'package:tidyr':\n\n    expand, pack, unpack\n\nCarregando pacotes exigidos: metadat\nCarregando pacotes exigidos: numDeriv\n\nLoading the 'metafor' package (version 4.6-0). For an\nintroduction to the package please type: help(metafor)\n\nlibrary(dplyr)\nlibrary(ggthemes)\nlibrary(plyr)\n\n------------------------------------------------------------------------------\nYou have loaded plyr after dplyr - this is likely to cause problems.\nIf you need functions from both plyr and dplyr, please load plyr first, then dplyr:\nlibrary(plyr); library(dplyr)\n------------------------------------------------------------------------------\n\nAnexando pacote: 'plyr'\n\nOs seguintes objetos são mascarados por 'package:dplyr':\n\n    arrange, count, desc, failwith, id, mutate, rename, summarise,\n    summarize\n\nO seguinte objeto é mascarado por 'package:purrr':\n\n    compact\n\nlibrary(janitor)\n\n\nAnexando pacote: 'janitor'\n\nOs seguintes objetos são mascarados por 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(metafor)\nlibrary(cowplot)\n\n\nAnexando pacote: 'cowplot'\n\nO seguinte objeto é mascarado por 'package:ggthemes':\n\n    theme_map\n\nO seguinte objeto é mascarado por 'package:lubridate':\n\n    stamp\n\nlibrary(rio)\n\n\nma = gsheet2tbl(\"https://docs.google.com/spreadsheets/d/1WVUeXTH_o9kTgryR1ZszdNFJjWt_PegmhxclXVSXVgk/edit?usp=sharing\")\nhead(ma)\n\n# A tibble: 6 × 15\n  study trial_name     year cultivar location   lat   lon state commercial group\n  &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;\n1     1 Embrapa Sinop  2017 M8210 I… Sinop    -119. -555. MT    ATIVUM + … tria…\n2     1 Embrapa Sinop  2017 M8210 I… Sinop    -119. -555. MT    ATIVUM + … tria…\n3     1 Embrapa Sinop  2017 M8210 I… Sinop    -119. -555. MT    ATIVUM + … tria…\n4     1 Embrapa Sinop  2017 M8210 I… Sinop    -119. -555. MT    ATIVUM + … tria…\n5     2 AgroCarregal   2017 CD 2728… Rio Ver… -178. -509. GO    ATIVUM + … tria…\n6     2 AgroCarregal   2017 CD 2728… Rio Ver… -178. -509. GO    ATIVUM + … tria…\n# ℹ 5 more variables: ai &lt;chr&gt;, block &lt;dbl&gt;, sev &lt;dbl&gt;, yld &lt;dbl&gt;, rust &lt;dbl&gt;"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Quem somos",
+    "section": "",
+    "text": "Quem somos\n\n\n\n\nA Fundação ABC é uma instituição de caráter particular, sem fins lucrativos, que realiza pesquisa aplicada para desenvolver e adaptar novas tecnologias, com o objetivo de promover soluções tecnológicas para o agronegócio aos mais de 5 mil produtores rurais filiados das Cooperativas Frísia, Castrolanda e Capal, além dos agricultores contribuintes, como os da Coopagricola (Ponta Grossa-PR), da Cooperativa Witmarsum (Palmeira-PR) e da KGL Agronegócio (Formosa-GO)."
+  },
+  {
+    "objectID": "index.html#rendimento",
+    "href": "index.html#rendimento",
+    "title": "Pacotes",
+    "section": "Rendimento",
+    "text": "Rendimento\n\nlabels &lt;- c(\"BIX+PROT+TRIFL\" = \"BIX+PROT+TRIFL\", \"_CHECK\" = \"Non-treated\", \"FLUX+PYRA\" = \"FLUX+PYRA\")\n\nyield = ma %&gt;% \n  filter(ai %in% c(\"BIX+PROT+TRIFL\", \"_CHECK\", \"FLUX+PYRA\")) %&gt;% \n  ggplot(aes(yld))+\n  geom_histogram(color = \"white\", fill = \"darkred\")+\n  facet_wrap(~ai,labeller = labeller(ai = labels))+\n  theme_few()+\n  labs(x = \"Yield (kg/ha)\",\n       y = \"Frequency\")+\n  theme(text = element_text(face = \"bold\",size = 14))\n\nggsave(\"fig/yield.png\", bg = \"white\", width = 10, height = 8)\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 49 rows containing non-finite outside the scale range\n(`stat_bin()`)."
+  },
+  {
+    "objectID": "index.html#rendimento-x-ano",
+    "href": "index.html#rendimento-x-ano",
+    "title": "Pacotes",
+    "section": "Rendimento x Ano",
+    "text": "Rendimento x Ano\n\nyield_year = ma %&gt;% \n  filter(ai %in% c(\"BIX+PROT+TRIFL\", \"_CHECK\", \"FLUX+PYRA\")) %&gt;% \n  ggplot(aes(as.factor(year),yld))+\n  #geom_histogram(color = \"white\", fill = \"darkgreen\")+\n  geom_boxplot(fill = NA, color = \"black\", size = 1)+\n  facet_wrap(~ai,labeller = labeller(ai = labels))+\n  theme_few()+\n  labs(x = \"Year\",\n       y = \"Yield (kg/ha)\")+\n  #coord_flip()+\n  theme(text = element_text(face = \"bold\",size = 14),\n        strip.text = element_blank())\n\nggsave(\"fig/yield_year.png\", bg = \"white\", width = 10, height = 8)\n\nWarning: Removed 49 rows containing non-finite outside the scale range\n(`stat_boxplot()`)."
+  },
+  {
+    "objectID": "index.html#plot",
+    "href": "index.html#plot",
+    "title": "Pacotes",
+    "section": "Plot",
+    "text": "Plot\n\nplot_grid(yield,yield_year, labels = c(\"AUTO\"), ncol = 1)\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 49 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\nWarning: Removed 49 rows containing non-finite outside the scale range\n(`stat_boxplot()`)."
+  },
+  {
+    "objectID": "index.html#plot-1",
+    "href": "index.html#plot-1",
+    "title": "Pacotes",
+    "section": "Plot",
+    "text": "Plot\n\nplot_grid(severity,severity_year, labels = c(\"AUTO\"), ncol = 1)\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 16 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\nWarning: Removed 16 rows containing non-finite outside the scale range\n(`stat_boxplot()`).\n\n\n\n\n\n\n\n\n\n\nggsave(\"fig/frequency_boxplot_severity.png\", \n       bg = \"white\", height = 8,width = 10)"
+  },
+  {
+    "objectID": "index.html#severidade-e-rendimento",
+    "href": "index.html#severidade-e-rendimento",
+    "title": "Pacotes",
+    "section": "Severidade e rendimento",
+    "text": "Severidade e rendimento\n\nma\n\n# A tibble: 6,582 × 15\n   study trial_name    year cultivar location   lat   lon state commercial group\n   &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;\n 1     1 Embrapa Sin…  2017 M8210 I… Sinop    -119. -555. MT    ATIVUM + … tria…\n 2     1 Embrapa Sin…  2017 M8210 I… Sinop    -119. -555. MT    ATIVUM + … tria…\n 3     1 Embrapa Sin…  2017 M8210 I… Sinop    -119. -555. MT    ATIVUM + … tria…\n 4     1 Embrapa Sin…  2017 M8210 I… Sinop    -119. -555. MT    ATIVUM + … tria…\n 5     2 AgroCarregal  2017 CD 2728… Rio Ver… -178. -509. GO    ATIVUM + … tria…\n 6     2 AgroCarregal  2017 CD 2728… Rio Ver… -178. -509. GO    ATIVUM + … tria…\n 7     2 AgroCarregal  2017 CD 2728… Rio Ver… -178. -509. GO    ATIVUM + … tria…\n 8     2 AgroCarregal  2017 CD 2728… Rio Ver… -178. -509. GO    ATIVUM + … tria…\n 9     3 Fundação MS…  2017 BMX Pot… Bonito   -211. -565. MS    ATIVUM + … tria…\n10     3 Fundação MS…  2017 BMX Pot… Bonito   -211. -565. MS    ATIVUM + … tria…\n# ℹ 6,572 more rows\n# ℹ 5 more variables: ai &lt;chr&gt;, block &lt;dbl&gt;, sev &lt;dbl&gt;, yld &lt;dbl&gt;, rust &lt;dbl&gt;\n\n\n\nma1 &lt;- ma %&gt;% \n  #filter(ai %in% c(\"BIX+PROT+TRIFL\", \"_CHECK\", \"FLUX+PYRA\")) %&gt;%\n  dplyr::group_by(study, year, location, state, ai) %&gt;% \n  dplyr::summarise(mean_sev = mean(sev),\n            mean_yld = mean(yld))\n\n`summarise()` has grouped output by 'study', 'year', 'location', 'state'. You\ncan override using the `.groups` argument."
+  },
+  {
+    "objectID": "index.html#regressão---severidade",
+    "href": "index.html#regressão---severidade",
+    "title": "Pacotes",
+    "section": "Regressão - Severidade",
+    "text": "Regressão - Severidade\n\nma_sev &lt;- ma %&gt;% \n  dplyr::filter(!is.na(sev)) %&gt;% \n  dplyr::filter(!is.na(yld)) %&gt;%\n  dplyr::filter(yld&gt;0) %&gt;%\n  dplyr::group_by(study, year) %&gt;%  \n  dplyr::select(ai, block, sev) %&gt;%\n  dplyr::group_by(study, year) %&gt;% \n  do(tidy(aov(.$sev ~ .$ai + factor(.$block)))) %&gt;% \n  dplyr::filter(term == \"Residuals\") %&gt;% \n  dplyr::select(1,2,6) %&gt;% \n  set_names(c(\"study\", \"year\", \"v_sev\"))\n\nAdding missing grouping variables: `study`, `year`"
+  },
+  {
+    "objectID": "index.html#regressão---rendimento",
+    "href": "index.html#regressão---rendimento",
+    "title": "Pacotes",
+    "section": "Regressão - Rendimento",
+    "text": "Regressão - Rendimento\n\nma_yld &lt;- ma %&gt;% \n  dplyr::filter(!is.na(sev)) %&gt;% \n  dplyr::filter(!is.na(yld)) %&gt;%\n  dplyr::filter(yld&gt;0) %&gt;% \n  dplyr::group_by(study, year) %&gt;% \n  dplyr::select(ai, block, yld) %&gt;% \n  dplyr::group_by(study, year) %&gt;% \n  do(tidy(aov(.$yld ~ .$ai + factor(.$block)))) %&gt;% \n  dplyr::filter(term == \"Residuals\") %&gt;% \n  dplyr::select(1,2,6) %&gt;% \n  set_names(c(\"study\", \"year\", \"v_yld\"))\n\nAdding missing grouping variables: `study`, `year`"
+  },
+  {
+    "objectID": "index.html#reunindo-dados",
+    "href": "index.html#reunindo-dados",
+    "title": "Pacotes",
+    "section": "Reunindo dados",
+    "text": "Reunindo dados\n\nqmr = left_join(ma_sev, ma_yld)\n\nJoining with `by = join_by(study, year)`\n\nma_trial = dplyr::full_join(ma1, qmr)\n\nJoining with `by = join_by(study, year)`"
+  },
+  {
+    "objectID": "index.html#seleção-de-i.a.",
+    "href": "index.html#seleção-de-i.a.",
+    "title": "Pacotes",
+    "section": "Seleção de I.A.",
+    "text": "Seleção de I.A.\n\nma3 = ma_trial %&gt;% \n  filter(!is.na(mean_sev)) %&gt;% \n  filter(!is.na(mean_yld)) %&gt;% \n  filter(!is.na(v_sev)) %&gt;% \n  filter(!is.na(v_yld)) %&gt;% \n  filter(ai %in% c(\"BIX+PROT+TRIFL\", \"_CHECK\", \"FLUX+PYRA\"))\n\nsummary(ma3)\n\n     study            year        location            state          \n Min.   : 1.00   Min.   :2017   Length:340         Length:340        \n 1st Qu.: 5.00   1st Qu.:2018   Class :character   Class :character  \n Median :10.00   Median :2020   Mode  :character   Mode  :character  \n Mean   :10.27   Mean   :2020                                        \n 3rd Qu.:15.00   3rd Qu.:2022                                        \n Max.   :22.00   Max.   :2023                                        \n      ai               mean_sev        mean_yld        v_sev        \n Length:340         Min.   : 0.10   Min.   :1558   Min.   : 0.0000  \n Class :character   1st Qu.:10.00   1st Qu.:3282   1st Qu.: 0.9804  \n Mode  :character   Median :21.49   Median :3762   Median : 2.5969  \n                    Mean   :25.27   Mean   :3747   Mean   : 6.8977  \n                    3rd Qu.:38.82   3rd Qu.:4224   3rd Qu.: 8.4684  \n                    Max.   :86.50   Max.   :6078   Max.   :64.2031  \n     v_yld       \n Min.   :  4250  \n 1st Qu.: 30921  \n Median : 51914  \n Mean   : 65616  \n 3rd Qu.: 84747  \n Max.   :349261"
+  },
+  {
+    "objectID": "index.html#renomeando-i.a.",
+    "href": "index.html#renomeando-i.a.",
+    "title": "Pacotes",
+    "section": "Renomeando I.A.",
+    "text": "Renomeando I.A.\n\nma3$ai &lt;- revalue(ma3$ai, c(\"_CHECK\" = \"AACHECK\"))\nma3$ai &lt;- revalue(ma3$ai, c(\"BIX+PROT+TRIFL\" = \"BIX + PROT + TRIFL\"))\nma3$ai &lt;- revalue(ma3$ai, c(\"FLUX+PYRA\" = \"FLUX + PYRA\"))\n\nma3$study = as.factor(ma3$study)\nunique(ma3$study)\n\n [1] 1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 20 21 22\nLevels: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22\n\n\n\n#ma3_unique &lt;- ma3 %&gt;%\n # dplyr::distinct(study, .keep_all = TRUE)\n\nma3 = ma3 %&gt;% # REVISAR\n dplyr::group_by(ai,study,year) %&gt;% \n  dplyr::summarise(\n    mean_yld = mean(mean_yld),\n    v_yld = mean(v_yld),\n    mean_sev = mean(mean_sev),\n    v_sev = mean(v_sev)\n  )\n\n`summarise()` has grouped output by 'ai', 'study'. You can override using the\n`.groups` argument.\n\nma_check = ma3 %&gt;% \n  ungroup() %&gt;% \n  dplyr::filter(ai == \"AACHECK\")%&gt;% \n  group_by(study) %&gt;% \n  dplyr::mutate(check = ai, sev_check = mean_sev,\n                v_sev_check = v_sev, yld_check = mean_yld, v_yld_check = v_yld ) %&gt;% \n dplyr::select(study, yld_check, v_yld_check, sev_check, v_sev_check)\n\nma_check = ma_check %&gt;% \n  filter(!is.na(yld_check)) %&gt;% \n  filter(!is.na(v_yld_check)) %&gt;% \n  filter(!is.na(sev_check)) %&gt;% \n  filter(!is.na(v_sev_check))\n\n\nma_check = ma_check %&gt;%\n dplyr::group_by(study) %&gt;% \n  dplyr::summarise(\n    yld_check = mean(yld_check),\n    v_yld_check = mean(v_yld_check),\n    sev_check = mean(sev_check),\n    v_sev_check = mean(v_sev_check)\n  )\n\nma_data = ma3 %&gt;% \n  full_join(ma_check)\n\nJoining with `by = join_by(study)`"
+  },
+  {
+    "objectID": "index.html#geral",
+    "href": "index.html#geral",
+    "title": "Pacotes",
+    "section": "Geral",
+    "text": "Geral\n\n# Overall\n\nmv_sev &lt;- rma.mv(log_sev, vi_sev,\n  mods = ~ai,\n  random = list(~ai | factor(study)),\n  struct = \"HCS\",\n  method = \"ML\",\n  #control = list(optimizer = \"nlm\"),\n  data = ma_sev)\n\nWarning: 'V' appears to be not positive definite.\n\n\nWarning: Ratio of largest to smallest sampling variance extremely large. May\nnot be able to obtain stable results.\n\nsummary(mv_sev)\n\n\nMultivariate Meta-Analysis Model (k = 340; method: ML)\n\n     logLik     Deviance          AIC          BIC         AICc   \n-24040.6371   49724.4605   48095.2742   48122.0768   48095.6116   \n\nVariance Components:\n\nouter factor: factor(study) (nlvls = 22)\ninner factor: ai            (nlvls = 3)\n\n            estim    sqrt  k.lvl  fixed               level \ntau^2.1    0.0389  0.1971    135     no             AACHECK \ntau^2.2    0.1082  0.3289    132     no  BIX + PROT + TRIFL \ntau^2.3    0.1399  0.3741     73     no         FLUX + PYRA \nrho        0.5527                    no                     \n\nTest for Residual Heterogeneity:\nQE(df = 337) = 172868.5215, p-val &lt; .0001\n\nTest of Moderators (coefficients 2:3):\nQM(df = 2) = 272.0872, p-val &lt; .0001\n\nModel Results:\n\n                      estimate      se      zval    pval    ci.lb    ci.ub      \nintrcpt                 3.7415  0.0421   88.9572  &lt;.0001   3.6591   3.8240  *** \naiBIX + PROT + TRIFL   -0.9501  0.0587  -16.1722  &lt;.0001  -1.0652  -0.8349  *** \naiFLUX + PYRA          -0.5919  0.0695   -8.5192  &lt;.0001  -0.7281  -0.4557  *** \n\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nmv_sev_means &lt;- emmprep(mv_sev)\nlibrary(emmeans)\n\nWelcome to emmeans.\nCaution: You lose important information if you filter this package's results.\nSee '? untidy'\n\nmv_sev_emmeans &lt;- emmeans(mv_sev_means, ~ ai)\npwpm(mv_sev_emmeans)\n\n                   AACHECK BIX + PROT + TRIFL FLUX + PYRA\nAACHECK             [3.74]             &lt;.0001      &lt;.0001\nBIX + PROT + TRIFL   0.950             [2.79]      &lt;.0001\nFLUX + PYRA          0.592             -0.358      [3.15]\n\nRow and column labels: ai\nUpper triangle: P values   adjust = \"tukey\"\nDiagonal: [Estimates] (emmean) \nLower triangle: Comparisons (estimate)   earlier vs. later"
+  },
+  {
+    "objectID": "index.html#retorno-em-rendimento",
+    "href": "index.html#retorno-em-rendimento",
+    "title": "Pacotes",
+    "section": "Retorno em rendimento",
+    "text": "Retorno em rendimento\n\nemmeans_summary &lt;- summary(mv_sev_emmeans)\nemmeans_df &lt;- as.data.frame(emmeans_summary)\ncolnames(emmeans_df) &lt;- c(\"ai\", \"emmeans\", \"SE\", \"df\", \"lower.CL\", \"upper.CL\")\n\nemmeans_df$emmeans = exp(emmeans_df$emmeans)\nemmeans_df$SE = exp(emmeans_df$SE)\nemmeans_df$lower.CL = exp(emmeans_df$lower.CL)\nemmeans_df$upper.CL = exp(emmeans_df$upper.CL)\n\nlibrary(multcomp)\n\nWarning: pacote 'multcomp' foi compilado no R versão 4.4.3\n\n\nCarregando pacotes exigidos: mvtnorm\n\n\nCarregando pacotes exigidos: survival\n\n\nCarregando pacotes exigidos: TH.data\n\n\nWarning: pacote 'TH.data' foi compilado no R versão 4.4.3\n\n\nCarregando pacotes exigidos: MASS\n\n\n\nAnexando pacote: 'MASS'\n\n\nO seguinte objeto é mascarado por 'package:dplyr':\n\n    select\n\n\n\nAnexando pacote: 'TH.data'\n\n\nO seguinte objeto é mascarado por 'package:MASS':\n\n    geyser\n\n#cld(mv_sev_emmeans)"
+  },
+  {
+    "objectID": "index.html#eficácia",
+    "href": "index.html#eficácia",
+    "title": "Pacotes",
+    "section": "Eficácia",
+    "text": "Eficácia\n\nefficacy_sev &lt;- data.frame(cbind(\n  (1 - exp(mv_sev$b)) * 100,\n  (1 - exp(mv_sev$ci.lb)) * 100,\n  (1 - exp(mv_sev$ci.ub)) * 100\n))\n\nefficacy_sev\n\n                              X1          X2          X3\nintrcpt              -4116.27129 -3782.63928 -4478.57204\naiBIX + PROT + TRIFL    61.32943    65.53536    56.61022\naiFLUX + PYRA           44.67358    51.71744    36.60210"
+  },
+  {
+    "objectID": "pessoal.html",
+    "href": "pessoal.html",
+    "title": "Responsáveis",
+    "section": "",
+    "text": "Responsáveis\n\n\n\n\nEdson Giovanni Kochinski: Fitopatologia / Graduação em Engenharia Agronômica, Centro de Ensino Superior dos Campos Gerais Faculdades Integradas\n\n\n\n\n\nGiovana Paola Teixeira Bochnia: Fitopatologia / Graduação em Engenharia Agronômica, Universidade Estadual de Ponta Grossa\n\n\n\n\n\nRonaldo Sperandio Ortiz: Fitopatologia / Engenheiro Agrônomo formado pela Universidade Estadual de Ponta Grossa (UEPG), com pós-graduação Lato Sensu em Fitossanidade pela Universidade Federal do Paraná (UFPR)."
+  }
+]
